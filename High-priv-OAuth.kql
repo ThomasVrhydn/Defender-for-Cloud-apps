@@ -1,0 +1,3 @@
+OAuthAppInfo
+| summarize arg_max(Timestamp, *) by OAuthAppId
+| where PrivilegeLevel == 'High' 
