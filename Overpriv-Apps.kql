@@ -1,0 +1,5 @@
+OAuthAppInfo
+| summarize arg_max(Timestamp, *) by OAuthAppId
+| mv-expand Permissions
+| where  Permissions.InUse == false
+| summarize Permissions = make_list(Permissions) by OAuthAppId, ServicePrincipalId, AppName, AppOrigin, AppStatus, ConsentedUsersCount, IsAdminConsented, LastModifiedTime, PrivilegeLevel 
